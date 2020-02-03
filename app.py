@@ -7,6 +7,7 @@ results = {}
 
 democract_electors = []
 republican_electors = []
+swing_electors = []
 
 class State:
     def __init__(self, state, democrat_polls, republican_polls, electors):
@@ -18,6 +19,8 @@ class State:
         self.democrat_average = 0
         self.republican_average = 0
 
+        self.winner = ''
+
         self.runall()
 
     def state_averages(self):
@@ -26,26 +29,48 @@ class State:
 
         return self.democrat_average, self.republican_average
 
-    def state_winner(self):
-        if self.democrat_average == self.republican_average:
-            self.winner = 'N/A'
-        elif self.democrat_average > self.republican_average:
-            self.winner = 'D'
-            democract_electors.append(self.electors)
-        else:
-            self.winner = 'R'
-            republican_electors.append(self.electors)
-            
+    def state_election(self):
+        self.simulations = random.choices(['D', 'R'], [float(self.democrat_average/100), float(self.republican_average/100)], k=10000)
 
-        results[self.state] = self.winner
+        if self.simulations.count('D') > self.simulations.count('R'):
+            self.winner = 'D'
+
+        elif self.simulations.count('R') > self.simulations.count('D'):
+            self.winner = 'R'
+
+        else:
+            self.winner = 'S'
+
+    # def state_winner(self):
+    #     if self.democrat_average == self.republican_average:
+    #         self.winner = 'N/A'
+
+    #     elif self.democrat_average > self.republican_average:
+    #         self.winner = 'D'
+    #         democract_electors.append(self.electors)
+
+    #     else:
+    #         self.winner = 'R'
+    #         republican_electors.append(self.electors)
+                    
+        if self.winner == 'D':
+            democract_electors.append(self.electors)
+
+        if self.winner == 'R':
+            republican_electors.append(self.electors)
+        
+        if self.winner == 'S':
+            swing_electors.append(self.electors)  
+            
+        results[self.state] = self.winner 
     
     def runall(self):
         if __name__ == '__main__':
             Thread(target = self.state_averages).start()
-            Thread(target = self.state_winner).start()
+            Thread(target = self.state_election).start()
 
-alabama = State('Alabama', [36], [57], 9)
-alaska = State('Alaska', [42], [42], 3)
+alabama = State('Alabama', [37, 38], [59, 59], 9)
+alaska = State('Alaska', [38], [45], 3)
 arizona = State('Arizona', [44], [47], 11)
 arkansas = State('Arkansas', [32], [54], 6)
 california = State('California', [56], [31], 55)
@@ -53,7 +78,7 @@ colorado = State('Colorado', [44], [41], 9)
 connecticut = State('Connecticut', [50], [35], 7)
 district_of_columbia = State('District of Columbia', [51], [30], 3)
 delaware = State('Delaware', [51], [30], 3)
-florida = State('Florida', [46], [46], 29)
+florida = State('Florida', [53], [47], 29)
 georgia = State('Georgia', [44], [49], 16)
 hawaii = State('Hawaii', [58], [28], 4)
 idaho = State('Idaho', [27], [47], 4)
@@ -96,6 +121,8 @@ west_virginia = State('West Virginia', [28], [60], 5)
 wisconsin = State('Wisconsin', [47], [40], 10)
 wyoming = State('Wyoming', [20], [58], 3)
 
-print(results)
 print(sum(democract_electors))
 print(sum(republican_electors))
+print(sum(swing_electors))
+
+print(sum(democract_electors) + sum(republican_electors) + sum(swing_electors))
