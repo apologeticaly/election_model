@@ -1,67 +1,24 @@
 import random
 import sys
+import threading
+from threading import Thread
 
-electors = {
-    'Alabama': 9,
-    'Alaska': 3,
-    'Arizona': 11,
-    'Arkansas': 6,
-    'California': 55,
-    'Colorado': 9,
-    'Connecticut': 7,
-    'District of Columbia': 3,
-    'Delaware': 3,
-    'Florida': 29,
-    'Georgia': 16,
-    'Hawaii': 4,
-    'Idaho': 4,
-    'Illinois': 20,
-    'Indiana': 11,
-    'Iowa': 6,
-    'Kansas': 6,
-    'Kentucky': 8,
-    'Louisiana': 8,
-    'Maine': 4,
-    'Maryland': 10,
-    'Massachusetts': 11,
-    'Michigan': 16,
-    'Minnesota': 10,
-    'Mississippi': 6,
-    'Missouri': 10,
-    'Montana': 3,
-    'Nebraska': 5,
-    'Nevada': 6,
-    'New Hampshire': 4,
-    'New Jersey': 14,
-    'New Mexico': 5,
-    'New York': 29,
-    'North Carolina': 15,
-    'North Dakota': 3,
-    'Ohio': 18,
-    'Oklahoma': 7,
-    'Oregon': 7,
-    'Pennsylvania': 20,
-    'Rhode Island': 4,
-    'South Carolina': 9,
-    'South Dakota': 3,
-    'Tennessee': 11,
-    'Texas': 38,
-    'Utah': 6,
-    'Vermont': 3,
-    'Virginia': 13,
-    'Washington': 12,
-    'West Virginia': 5,
-    'Wisconsin': 10,
-    'Wyoming': 3
-    }
+results = {}
+
+democract_electors = []
+republican_electors = []
 
 class State:
-    def __init__(self, democrat_polls, republican_polls):
+    def __init__(self, state, democrat_polls, republican_polls, electors):
+        self.state = state
+        self.electors = electors
         self.democrat_polls = democrat_polls
         self.republican_polls = republican_polls
 
         self.democrat_average = 0
         self.republican_average = 0
+
+        self.runall()
 
     def state_averages(self):
         self.democrat_average = (sum(self.democrat_polls) / len(self.democrat_polls))
@@ -70,65 +27,75 @@ class State:
         return self.democrat_average, self.republican_average
 
     def state_winner(self):
-        if self.democrat_average > self.republican_average:
-            self.winner = 'Democrat'
+        if self.democrat_average == self.republican_average:
+            self.winner = 'N/A'
+        elif self.democrat_average > self.republican_average:
+            self.winner = 'D'
+            democract_electors.append(self.electors)
         else:
-            self.winner = ' Republican'
+            self.winner = 'R'
+            republican_electors.append(self.electors)
+            
 
-        return self.winner
+        results[self.state] = self.winner
+    
+    def runall(self):
+        if __name__ == '__main__':
+            Thread(target = self.state_averages).start()
+            Thread(target = self.state_winner).start()
 
-alabama = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-alaska = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-arizona = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-arkansas = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-california = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-colorado = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-connecticut = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-district_of_columbia = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-delaware = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-florida = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-georgia = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-hawaii = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-idaho = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-illinois = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-indiana = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-iowa = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-kansas = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-kentucky = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-louisiana = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-maine = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-maryland = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-massachusetts = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-michigan = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-minnesota = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-mississippi = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-missouri = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-montana = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-nebraska = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-nevada = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-new_hampshire = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-new_jersey = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-new_mexico = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-new_york = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-north_carolina = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-north_dakota = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-ohio = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-oklahoma = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-oregon = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-pennsylvania = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-rhode_island = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-south_carolina = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-south_dakota = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-tennessee = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-texas = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-utah = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-vermont = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-virginia = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-washington = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-west_virginia = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-wisconsin = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
-wyoming = State([42, 24, 42, 55, 23], [23, 33, 31, 12, 12])
+alabama = State('Alabama', [36], [57], 9)
+alaska = State('Alaska', [42], [42], 3)
+arizona = State('Arizona', [44], [47], 11)
+arkansas = State('Arkansas', [32], [54], 6)
+california = State('California', [56], [31], 55)
+colorado = State('Colorado', [44], [41], 9)
+connecticut = State('Connecticut', [50], [35], 7)
+district_of_columbia = State('District of Columbia', [51], [30], 3)
+delaware = State('Delaware', [51], [30], 3)
+florida = State('Florida', [46], [46], 29)
+georgia = State('Georgia', [44], [49], 16)
+hawaii = State('Hawaii', [58], [28], 4)
+idaho = State('Idaho', [27], [47], 4)
+illinois = State('Illinois', [50], [37], 20)
+indiana = State('Indiana', [38], [47], 11)
+iowa = State('Iowa', [43], [45], 6)
+kansas = State('Kansas', [38], [49], 6)
+kentucky = State('Kentucky', [35], [55], 8)
+louisiana = State('Louisiana', [36], [50], 8)
+maine = State('Maine', [47], [40], 4)
+maryland = State('Maryland', [63], [27], 10)
+massachusetts = State('Massachusetts', [58], [27], 11)
+michigan = State('Michigan', [48], [42], 16)
+minnesota = State('Minnesota', [50], [41], 10)
+mississippi = State('Mississippi', [46], [48], 6)
+missouri = State('Missouri', [40], [50], 10)
+montana = State('Montana', [32], [45], 3)
+nebraska = State('Nebraska', [29], [56], 5)
+nevada = State('Nevada', [46], [47], 6)
+new_hampshire = State('New Hampshire', [45], [44], 4)
+new_jersey = State('New Jersey', [51], [40], 14)
+new_mexico = State('New Mexico', [48], [40], 5)
+new_york = State('New York', [51], [34], 29)
+north_carolina = State('North Carolina', [46], [46], 15)
+north_dakota = State('North Dakota', [32], [43], 3)
+ohio = State('Ohio', [43], [46], 18)
+oklahoma = State('Oklahoma', [30], [60], 7)
+oregon = State('Oregon', [45], [36], 7)
+pennsylvania = State('Pennsylvania', [48], [44], 20)
+rhode_island = State('Rhode Island', [52], [32], 4)
+south_carolina = State('South Carolina', [38], [42], 9)
+south_dakota = State('South Dakota', [36], [47], 3)
+tennessee = State('Tennessee', [36], [48], 11)
+texas = State('Texas', [39], [48], 38)
+utah = State('Utah', [26], [38], 6)
+vermont = State('Vermont', [48], [20], 3)
+virginia = State('Virginia', [48], [44], 13)
+washington = State('Washington', [50], [36], 12)
+west_virginia = State('West Virginia', [28], [60], 5)
+wisconsin = State('Wisconsin', [47], [40], 10)
+wyoming = State('Wyoming', [20], [58], 3)
 
-
-print(alabama.state_averages())
-print(alabama.state_winner())
+print(results)
+print(sum(democract_electors))
+print(sum(republican_electors))
