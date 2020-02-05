@@ -1,55 +1,56 @@
+import random
+from states import states
 
+results = []
 
+democrat_electors = []
+republican_electors = []
 
+democrat_states = []
+republican_states = []
 
-alabama = State('Alabama', [37, 38], [59, 59], 9)
-alaska = State('Alaska', [38], [45], 3)
-arizona = State('Arizona', [44], [47], 11)
-arkansas = State('Arkansas', [32], [54], 6)
-california = State('California', [56], [31], 55)
-colorado = State('Colorado', [44], [41], 9)
-connecticut = State('Connecticut', [50], [35], 7)
-district_of_columbia = State('District of Columbia', [51], [30], 3)
-delaware = State('Delaware', [51], [30], 3)
-florida = State('Florida', [53], [47], 29)
-georgia = State('Georgia', [44], [49], 16)
-hawaii = State('Hawaii', [58], [28], 4)
-idaho = State('Idaho', [27], [47], 4)
-illinois = State('Illinois', [50], [37], 20)
-indiana = State('Indiana', [38], [47], 11)
-iowa = State('Iowa', [43], [45], 6)
-kansas = State('Kansas', [38], [49], 6)
-kentucky = State('Kentucky', [35], [55], 8)
-louisiana = State('Louisiana', [36], [50], 8)
-maine = State('Maine', [47], [40], 4)
-maryland = State('Maryland', [63], [27], 10)
-massachusetts = State('Massachusetts', [58], [27], 11)
-michigan = State('Michigan', [48], [42], 16)
-minnesota = State('Minnesota', [50], [41], 10)
-mississippi = State('Mississippi', [46], [48], 6)
-missouri = State('Missouri', [40], [50], 10)
-montana = State('Montana', [32], [45], 3)
-nebraska = State('Nebraska', [29], [56], 5)
-nevada = State('Nevada', [46], [47], 6)
-new_hampshire = State('New Hampshire', [45], [44], 4)
-new_jersey = State('New Jersey', [51], [40], 14)
-new_mexico = State('New Mexico', [48], [40], 5)
-new_york = State('New York', [51], [34], 29)
-north_carolina = State('North Carolina', [46], [46], 15)
-north_dakota = State('North Dakota', [32], [43], 3)
-ohio = State('Ohio', [43], [46], 18)
-oklahoma = State('Oklahoma', [30], [60], 7)
-oregon = State('Oregon', [45], [36], 7)
-pennsylvania = State('Pennsylvania', [48], [44], 20)
-rhode_island = State('Rhode Island', [52], [32], 4)
-south_carolina = State('South Carolina', [38], [42], 9)
-south_dakota = State('South Dakota', [36], [47], 3)
-tennessee = State('Tennessee', [36], [48], 11)
-texas = State('Texas', [39], [48], 38)
-utah = State('Utah', [26], [38], 6)
-vermont = State('Vermont', [48], [20], 3)
-virginia = State('Virginia', [48], [44], 13)
-washington = State('Washington', [50], [36], 12)
-west_virginia = State('West Virginia', [28], [60], 5)
-wisconsin = State('Wisconsin', [47], [40], 10)
-wyoming = State('Wyoming', [20], [58], 3)
+def state_election():
+    for key, value in states.items():
+
+        democratic_average = value[0] / 10
+        republican_average = value[1] / 10
+
+        simulation = random.choices(['D', 'R'], [democratic_average, republican_average])
+        
+        if 'D' in simulation:
+            democrat_electors.append(value[2])
+            democrat_states.append(key)
+
+        if 'R' in simulation:
+            republican_electors.append(value[2])
+            republican_states.append(key)
+
+    if sum(democrat_electors) > sum(republican_electors):
+        results.append('D')
+
+    if sum(democrat_electors) == sum(republican_electors):
+        results.append('T')
+    
+    if sum(democrat_electors) < sum(republican_electors):
+        results.append('R')
+
+    # print(sum(democrat_electors), sum(republican_electors))
+    # print(sum(democrat_electors) + sum(republican_electors))
+            
+
+for _ in range(1000):
+    democrat_electors = []
+    republican_electors = []
+    state_election()
+    
+
+def win_probability ():
+    democrat_probability = results.count('D') / 10
+    republican_probability = results.count('R') / 10
+    tie_probability = results.count('T') / 10
+
+    print('Democrat: ' + str(democrat_probability) + '%')
+    print('Republican: ' + str(republican_probability) + '%')
+    print('Tie: ' + str(tie_probability) + '%')
+
+win_probability()

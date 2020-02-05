@@ -1,53 +1,52 @@
-from app import State
-
-alabama = State('Alabama', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 9)
-alaska = State('Alaska', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 3)
-arizona = State('Arizona', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 11)
-arkansas = State('Arkansas', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 6)
-california = State('California', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 55)
-colorado = State('Colorado', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 9)
-connecticut = State('Connecticut', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 7)
-district_of_columbia = State('District of Columbia', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 3)
-delaware = State('Delaware', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 3)
-florida = State('Florida', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 29)
-georgia = State('Georgia', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 16)
-hawaii = State('Hawaii', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 4)
-idaho = State('Idaho', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 4)
-illinois = State('Illinois', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 20)
-indiana = State('Indiana', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 11)
-iowa = State('Iowa', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 6)
-kansas = State('Kansas', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 6)
-kentucky = State('Kentucky', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 8)
-louisiana = State('Louisiana', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 8)
-maine = State('Maine', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 4)
-maryland = State('Maryland', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 10)
-massachusetts = State('Massachusetts', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 11)
-michigan = State('Michigan', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 16)
-minnesota = State('Minnesota', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 10)
-mississippi = State('Mississippi', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 6)
-missouri = State('Missouri', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 10)
-montana = State('Montana', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 3)
-nebraska = State('Nebraska', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 5)
-nevada = State('Nevada', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 6)
-new_hampshire = State('New Hampshire', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 4)
-new_jersey = State('New Jersey', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 14)
-new_mexico = State('New Mexico', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 5)
-new_york = State('New York', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 29)
-north_carolina = State('North Carolina', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 15)
-north_dakota = State('North Dakota', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 3)
-ohio = State('Ohio', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 18)
-oklahoma = State('Oklahoma', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 7)
-oregon = State('Oregon', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 7)
-pennsylvania = State('Pennsylvania', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 20)
-rhode_island = State('Rhode Island', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 4)
-south_carolina = State('South Carolina', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 9)
-south_dakota = State('South Dakota', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 3)
-tennessee = State('Tennessee', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 11)
-texas = State('Texas', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 38)
-utah = State('Utah', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 6)
-vermont = State('Vermont', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 3)
-virginia = State('Virginia', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 13)
-washington = State('Washington', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 12)
-west_virginia = State('West Virginia', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 5)
-wisconsin = State('Wisconsin', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 10)
-wyoming = State('Wyoming', [42, 24, 42, 55, 23], [23, 33, 31, 12, 12], 3)
+states = {
+  'Alabama': [38, 59, 9]
+, 'Alaska': [38, 45, 3]
+, 'Arizona': [46, 47, 11]
+, 'Arkansas': [32, 54, 6]
+, 'California': [59, 36, 55]
+, 'Colorado': [55, 45, 9]
+, 'Connecticut': [52, 35, 7]
+, 'District of Columbia': [51, 30, 3]
+, 'Delaware': [47, 45, 3]
+, 'Florida': [53, 47, 29] # updated Jan 15th
+, 'Georgia': [48, 52, 16]
+, 'Hawaii': [58, 28, 4]
+, 'Idaho': [27, 47, 4]
+, 'Illinois': [50, 37, 20]
+, 'Indiana': [38, 47, 11]
+, 'Iowa': [42, 48, 6]
+, 'Kansas': [38, 49, 6]
+, 'Kentucky': [35, 57, 8]
+, 'Louisiana': [36, 50, 8]
+, 'Maine': [64, 36, 4]
+, 'Maryland': [60, 40, 10]
+, 'Massachusetts': [58, 27, 11]
+, 'Michigan': [50, 45, 16] # updated Jan 15th
+, 'Minnesota': [49, 40, 10]
+, 'Mississippi': [26, 74, 6]
+, 'Missouri': [40, 50, 10]
+, 'Montana': [46, 54, 3]
+, 'Nebraska': [44, 56, 5]
+, 'Nevada': [46, 41, 6]
+, 'New Hampshire': [51, 43, 4]
+, 'New Jersey': [51, 40, 14]
+, 'New Mexico': [59, 41, 5]
+, 'New York': [60, 40, 29]
+, 'North Carolina': [45, 44, 15]
+, 'North Dakota': [30, 70, 3]
+, 'Ohio': [47, 47, 18]
+, 'Oklahoma': [30, 60, 7]
+, 'Oregon': [64, 36, 7]
+, 'Pennsylvania': [48, 44, 20]
+, 'Rhode Island': [52, 32, 4]
+, 'South Carolina': [34, 54, 9]
+, 'South Dakota': [36, 47, 3]
+, 'Tennessee': [36, 48, 11]
+, 'Texas': [42, 47, 38] # updated Jan 15th
+, 'Utah': [31, 50, 6]
+, 'Vermont': [48, 20, 3]
+, 'Virginia': [45, 51, 13]
+, 'Washington': [58, 36, 12]
+, 'West Virginia': [28, 60, 5]
+, 'Wisconsin': [47, 46, 10] # updated Jan 15th
+, 'Wyoming': [20, 58, 3]}
