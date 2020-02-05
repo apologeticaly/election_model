@@ -1,65 +1,5 @@
-import random
-import sys
-import threading
-from threading import Thread
 
-results = {}
 
-chances = []
-
-democrat_results = []
-republican_results = []
-
-democract_electors = []
-republican_electors = []
-
-class State:
-    def __init__(self, state, democrat_polls, republican_polls, electors):
-        self.state = state
-        self.electors = electors
-        self.democrat_polls = democrat_polls
-        self.republican_polls = republican_polls
-
-        self.democrat_average = 0
-        self.republican_average = 0
-
-        self.winner = ''
-        for _ in range(50):
-            self.runall()
-
-    def state_averages(self):
-        self.democrat_average = (sum(self.democrat_polls) / len(self.democrat_polls))
-        self.republican_average = (sum(self.republican_polls) / len(self.republican_polls))
-
-        return self.democrat_average, self.republican_average
-
-    def state_election(self):
-        self.simulations = random.choices(['D', 'R'], [float(self.democrat_average/100), float(self.republican_average/100)])
-
-        if self.simulations.count('D') > self.simulations.count('R'):
-            self.winner = 'D'
-
-        elif self.simulations.count('R') > self.simulations.count('D'):
-            self.winner = 'R'
-
-        elif self.simulations.count('R') == self.simulations.count('R'):
-            if random.randint(0, 1) >= .5:
-                self.winner = 'D'
-            else:
-                self.winner = 'R'
-                    
-        if self.winner == 'D':
-            democract_electors.append(self.electors)
-
-        if self.winner == 'R':
-            republican_electors.append(self.electors)
-        
-        results[self.state] = self.winner
-    
-    def runall(self):
-        if __name__ == '__main__':
-            Thread(target = self.state_averages).start()
-            Thread(target = self.state_election).start()
 
 
 alabama = State('Alabama', [37, 38], [59, 59], 9)
@@ -113,19 +53,3 @@ washington = State('Washington', [50], [36], 12)
 west_virginia = State('West Virginia', [28], [60], 5)
 wisconsin = State('Wisconsin', [47], [40], 10)
 wyoming = State('Wyoming', [20], [58], 3)
-
-print(sum(democract_electors))
-print(sum(republican_electors))
-
-def proclaim_chances():
-    if sum(republican_electors) < sum(democract_electors):
-        chances.append('D')
-
-    if sum(republican_electors) > sum(democract_electors):
-        chances.append('R')
-
-    print(chances)
-
-print(sum(democract_electors) + sum(republican_electors))
-
-proclaim_chances()
