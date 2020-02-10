@@ -1,5 +1,6 @@
 import random
 from states import states
+from terminaltables import AsciiTable, SingleTable
 
 results = []
 
@@ -38,19 +39,26 @@ def state_election():
     # print(sum(democrat_electors) + sum(republican_electors))
             
 
-for _ in range(1000):
+for _ in range(10000):
     democrat_electors = []
     republican_electors = []
     state_election()
     
 
 def win_probability ():
-    democrat_probability = results.count('D') / 10
-    republican_probability = results.count('R') / 10
-    tie_probability = results.count('T') / 10
+    democrat_probability = results.count('D') / 100
+    republican_probability = results.count('R') / 100
+    tie_probability = results.count('T') / 100
 
-    print('Democrat: ' + str(democrat_probability) + '%')
-    print('Republican: ' + str(republican_probability) + '%')
-    print('Tie: ' + str(tie_probability) + '%')
+    table_data = [
+    ['DEMOCRAT', 'REPUBLICAN', 'TIE'],
+    [str(democrat_probability) + '%', str(republican_probability) + '%', str(tie_probability) + '%']
+    ]
+    table = SingleTable(table_data)
+    table.title = 'General Election Chances'
+    table.justify_columns[0] = 'center' 
+    table.justify_columns[1] = 'center'
+    table.justify_columns[2] = 'center'  
+    print (table.table)
 
 win_probability()
