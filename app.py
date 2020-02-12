@@ -14,8 +14,8 @@ republican_states = []
 def state_election():
     for key, value in states.items():
 
-        democratic_average = value[0] / 10
-        republican_average = value[1] / 10
+        democratic_average = value[0]
+        republican_average = value[1]
 
         simulation = random.choices(['D', 'R'], [democratic_average, republican_average])
         
@@ -71,6 +71,8 @@ if __name__ == '__main__':
         se_table.title = 'GE Simulation'
         se_table.justify_columns[0] = 'center' 
         se_table.justify_columns[1] = 'center'
-        se_table.justify_columns[2] = 'center'  
-
+        se_table.justify_columns[2] = 'center' 
         print (se_table.table)
+
+        print(democrat_states)
+        print(republican_states)
