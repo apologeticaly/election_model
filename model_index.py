@@ -52,22 +52,22 @@ def model_index():
 
 
         if mle_d > mle_r:
-            mi_score_d = mi_score_d + 5
+            mi_score_d = mi_score_d + 15
 
             if mle_d > 5:
-                mi_score_d = mi_score_d + 5
+                mi_score_d = mi_score_d + 25
 
             if mle_d > 10:
-                mi_score_d = mi_score_d + 5
+                mi_score_d = mi_score_d + 50
 
         if mle_r > mle_d:
-            mi_score_r = mi_score_r + 5
+            mi_score_r = mi_score_r + 15
 
             if mle_d > 5:
-                mi_score_r = mi_score_r + 5
+                mi_score_r = mi_score_r + 25
 
             if mle_d > 10:
-                mi_score_r = mi_score_r + 5
+                mi_score_r = mi_score_r + 50
         
 
 
@@ -84,20 +84,24 @@ def model_index():
 model_index()
 
 table_data = []
-
-# def return_tabulated():
-#     for key, value in scores.items():
-#         table_data.append([key, value[0], value[1]])
+def return_tabulated():
+    for key, value in scores.items():
+        table_data.append([key, value[0], value[1]])
     
-#     table_data.insert(0, ['STATE', 'DEMOCRAT', 'REPUBLICAN'])
+    table_data.insert(0, ['STATE', 'DEMOCRAT', 'REPUBLICAN'])
 
-#     table = SingleTable(table_data)
-#     table.title = 'Model Index Scores'
-#     table.inner_row_border = True
-#     table.justify_columns[0] = 'right' 
-#     table.justify_columns[1] = 'center'
-#     table.justify_columns[2] = 'center'  
+    table = SingleTable(table_data)
+    table.title = 'Model Index Scores'
+    table.inner_row_border = True
+    table.justify_columns[0] = 'right' 
+    table.justify_columns[1] = 'center'
+    table.justify_columns[2] = 'center'  
 
-#     print (table.table)
+    print (table.table)
 
-# return_tabulated()
+
+if __name__ == '__main__':
+    if sys.argv[1] == 'v':
+        return_tabulated()
+    else:
+        print('Use v as sysargv to print table.')

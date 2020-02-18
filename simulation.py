@@ -18,10 +18,10 @@ def state_election():
         democratic_average = value[1]
         republican_average = value[2]
 
-        model_index_d = scores[key][0]
-        model_index_r = scores[key][1]
+        model_index_d = scores[key][0] / 10
+        model_index_r = scores[key][1] / 10
 
-        simulation = random.choices(['D', 'R'], [(int(democratic_average) * model_index_d), (int(republican_average) * model_index_r)])
+        simulation = random.choices(['D', 'R'], [(int(democratic_average) + model_index_d), (int(republican_average) + model_index_r)])
         
         if 'D' in simulation:
             democrat_electors.append(int(value[0]))
@@ -83,14 +83,16 @@ if __name__ == '__main__':
         state_election()
         se_table_data = [
         ['DEMOCRAT', 'REPUBLICAN', 'TOTAL'],
-        [democrat_states, republican_states, str(len(democrat_states) + len(republican_states))]
+        ['\n'.join([str(i) for i in democrat_states]), '\n'.join([str(i) for i in republican_states]), str(len(democrat_states) + len(republican_states))],
+        [sum(democrat_electors), sum(republican_electors), (sum(democrat_electors)+ sum(republican_electors))]
         ]
         se_table = SingleTable(se_table_data)
         se_table.title = 'GE Simulation'
+        se_table.inner_row_border = True
         se_table.justify_columns[0] = 'center' 
         se_table.justify_columns[1] = 'center'
         se_table.justify_columns[2] = 'center' 
-        print (se_table.table)
+        print(se_table.table)
 
         # print(democrat_states)
         # print(republican_states)
