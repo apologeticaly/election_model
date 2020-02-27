@@ -22,52 +22,52 @@ def model_index():
         past_five = value[8]
 
         if numpy.subtract(polling_d, polling_r) > 10:
-            mi_score_d = mi_score_d + 25
+            mi_score_d = mi_score_d + 2.5
 
         if numpy.subtract(polling_d, polling_r) > 5:
-            mi_score_d = mi_score_d + 10
+            mi_score_d = mi_score_d + 1.0
         
         if numpy.subtract(polling_d, polling_r) > 1:
-            mi_score_d = mi_score_d + 5
+            mi_score_d = mi_score_d + 0.5
         
         if numpy.subtract(polling_r, polling_d) > 10:
-            mi_score_r = mi_score_r+ 25
+            mi_score_r = mi_score_r + 2.5
 
         if numpy.subtract(polling_r, polling_d) > 5:
-            mi_score_r = mi_score_r + 10
+            mi_score_r = mi_score_r + 1.0
         
         if numpy.subtract(polling_r, polling_d) > 1:
-            mi_score_r = mi_score_r + 5
+            mi_score_r = mi_score_r + 0.5
 
 
 
         for i in past_five: 
-            if i == 'D': 
-                mi_score_d = mi_score_d + 5
+            if i == democrat: 
+                mi_score_d = mi_score_d + 1
 
         for i in past_five: 
-            if i == 'R': 
-                mi_score_r = mi_score_r + 5
+            if i == republican: 
+                mi_score_r = mi_score_r + 1
 
 
 
         if mle_d > mle_r:
-            mi_score_d = mi_score_d + 15
+            mi_score_d = mi_score_d + 0.25
 
             if mle_d > 5:
-                mi_score_d = mi_score_d + 25
+                mi_score_d = mi_score_d + 2.5
 
             if mle_d > 10:
-                mi_score_d = mi_score_d + 50
+                mi_score_d = mi_score_d + 5.75
 
         if mle_r > mle_d:
-            mi_score_r = mi_score_r + 15
+            mi_score_r = mi_score_r + 0.25
 
             if mle_d > 5:
-                mi_score_r = mi_score_r + 25
+                mi_score_r = mi_score_r + 2.5
 
             if mle_d > 10:
-                mi_score_r = mi_score_r + 50
+                mi_score_r = mi_score_r + 5.75
         
 
 

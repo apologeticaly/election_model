@@ -1,8 +1,11 @@
 import random
 from contests import contests
 from terminaltables import AsciiTable, SingleTable
-from model_index import  scores
+from model_index import scores
 import sys
+import csv
+from termcolor import colored
+from itertools import zip_longest
 
 results = []
 
@@ -18,8 +21,8 @@ def state_election():
         democratic_average = value[1]
         republican_average = value[2]
 
-        model_index_d = scores[key][0] / 10
-        model_index_r = scores[key][1] / 10
+        model_index_d = scores[key][0]
+        model_index_r = scores[key][1]
 
         simulation = random.choices(['D', 'R'], [(int(democratic_average) + model_index_d), (int(republican_average) + model_index_r)])
         
@@ -46,7 +49,7 @@ def win_probability ():
     tie_probability = results.count('T') / 100
 
     table_data = [
-    ['DEMOCRAT', 'REPUBLICAN', 'TIE', 'TOTAL'],
+    [colored('DEMOCRAT', 'white', 'on_blue'), colored('REPUBLICAN', 'white', 'on_red'), 'TIE', 'TOTAL'],
     [str(democrat_probability) + '%', str(republican_probability) + '%', str(tie_probability) + '%',
         str(democrat_probability + republican_probability + tie_probability) + '%']
     ]
@@ -59,40 +62,58 @@ def win_probability ():
     print (table.table)
 
 if __name__ == '__main__':
-    if sys.argv[1] == 'simulate':
+    try:
+
+        if sys.argv[1] == 'single':
+            state_election()
+            se_table_data = [
+            [colored('DEMOCRAT', 'white', 'on_blue'), colored('REPUBLICAN', 'white', 'on_red'), 'TOTAL'],
+            [str(sum(democrat_electors)), str(sum(republican_electors)), str(sum(democrat_electors) + sum(republican_electors))]
+            ]
+            se_table = SingleTable(se_table_data)
+            se_table.title = 'GE Simulation'
+            se_table.justify_columns[0] = 'center' 
+            se_table.justify_columns[1] = 'center'
+            se_table.justify_columns[2] = 'center' 
+            print (se_table.table)
+
+        if sys.argv[1] == 'states':
+            state_election()
+            se_table_data = [
+            [colored('DEMOCRAT', 'white', 'on_blue'), colored('REPUBLICAN', 'white', 'on_red'), 'TOTAL'],
+            ['\n'.join([str(i) for i in democrat_states]), '\n'.join([str(i) for i in republican_states]), str(len(democrat_states) + len(republican_states))],
+            [sum(democrat_electors), sum(republican_electors), (sum(democrat_electors)+ sum(republican_electors))]
+            ]
+            se_table = SingleTable(se_table_data)
+            se_table.title = 'GE Simulation'
+            se_table.inner_row_border = True
+            se_table.justify_columns[0] = 'center' 
+            se_table.justify_columns[1] = 'center'
+            se_table.justify_columns[2] = 'center' 
+            print(se_table.table)
+
+        elif sys.argv[1] == 'csv':
+            state_election()
+            with open('results.csv', 'w') as csvfile:
+                filewriter = csv.writer(csvfile,
+                                        quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                filewriter.writerow(["State", "Party"])
+                for i in democrat_states:
+                    filewriter.writerow([i,"D"])
+
+                for i in republican_states:
+                    filewriter.writerow([i,"R"])
+                
+                filewriter.writerow([sum(democrat_electors), sum(republican_electors)])
+            print('File outputed as output.csv')
+
+            
+    except:
         for _ in range(10000):
             democrat_electors = []
             republican_electors = []
             state_election()
         win_probability()
-
-    if sys.argv[1] == 'single':
-        state_election()
-        se_table_data = [
-        ['DEMOCRAT', 'REPUBLICAN', 'TOTAL'],
-        [str(sum(democrat_electors)), str(sum(republican_electors)), str(sum(democrat_electors) + sum(republican_electors))]
-        ]
-        se_table = SingleTable(se_table_data)
-        se_table.title = 'GE Simulation'
-        se_table.justify_columns[0] = 'center' 
-        se_table.justify_columns[1] = 'center'
-        se_table.justify_columns[2] = 'center' 
-        print (se_table.table)
-
-    if sys.argv[1] == 'states':
-        state_election()
-        se_table_data = [
-        ['DEMOCRAT', 'REPUBLICAN', 'TOTAL'],
-        ['\n'.join([str(i) for i in democrat_states]), '\n'.join([str(i) for i in republican_states]), str(len(democrat_states) + len(republican_states))],
-        [sum(democrat_electors), sum(republican_electors), (sum(democrat_electors)+ sum(republican_electors))]
-        ]
-        se_table = SingleTable(se_table_data)
-        se_table.title = 'GE Simulation'
-        se_table.inner_row_border = True
-        se_table.justify_columns[0] = 'center' 
-        se_table.justify_columns[1] = 'center'
-        se_table.justify_columns[2] = 'center' 
-        print(se_table.table)
 
         # print(democrat_states)
         # print(republican_states)
