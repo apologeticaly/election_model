@@ -1,0 +1,57 @@
+id,name,ec,party,democrat,republican,third,margin,winner
+AL,Alabama,9,6,37.771%,61.244%,0.985%,Trump +23.47%,R
+AK,Alaska,3,4,49.087%,49.888%,1.025%,Trump +0.8%,R
+AZ,Arizona,11,4,49.382%,49.682%,0.936%,Trump +0.3%,R
+AR,Arkansas,6,6,15.575%,82.865%,1.56%,Trump +67.29%,R
+CA,California,55,1,67.983%,30.94%,1.077%,Biden +37.04%,D
+CO,Colorado,9,4,48.932%,50.029%,1.039%,Trump +1.1%,R
+CT,Connecticut,7,3,53.316%,45.666%,1.018%,Biden +7.65%,D
+DC,District of Columbia,3,3,54.123%,44.835%,1.042%,Biden +9.29%,D
+DE,Delaware,3,3,54.025%,44.992%,0.983%,Biden +9.03%,D
+FL,Florida,29,4,46.909%,52.164%,0.927%,Trump +5.26%,R
+GA,Georgia,16,4,44.959%,54.104%,0.937%,Trump +9.14%,R
+HI,Hawaii,4,1,58.492%,40.515%,0.993%,Biden +17.98%,D
+ID,Idaho,4,6,4.529%,94.042%,1.429%,Trump +89.51%,R
+IL,Illinois,20,3,49.928%,49.083%,0.989%,Biden +0.84%,D
+IN,Indiana,11,4,47.205%,51.791%,1.004%,Trump +4.59%,R
+IA,Iowa,6,4,47.79%,51.205%,1.005%,Trump +3.41%,R
+KS,Kansas,6,5,43.506%,55.427%,1.067%,Trump +11.92%,R
+KY,Kentucky,8,5,42.945%,56.068%,0.987%,Trump +13.12%,R
+LA,Louisiana,8,6,2.512%,95.997%,1.491%,Trump +93.48%,R
+ME,Maine,2,3,52.522%,46.514%,0.964%,Biden +6.01%,D
+ME_1,Maine 1st District,1,3,52.265%,46.772%,0.963%,Biden +5.49%,D
+ME_2,Maine 2nd District,1,3,52.486%,46.517%,0.997%,Biden +5.97%,D
+MD,Maryland,10,1,59.885%,39.127%,0.988%,Biden +20.76%,D
+MA,Massachusetts,11,1,65.404%,33.642%,0.954%,Biden +31.76%,D
+MI,Michigan,16,4,46.386%,52.554%,1.06%,Trump +6.17%,R
+MN,Minnesota,10,1,57.436%,41.609%,0.955%,Biden +15.83%,D
+MS,Mississippi,6,6,40.658%,58.379%,0.963%,Trump +17.72%,R
+MO,Missouri,10,5,43.908%,55.12%,0.972%,Trump +11.21%,R
+MT,Montana,3,6,35.941%,63.046%,1.013%,Trump +27.1%,R
+NE,Nebraska,2,6,1.016%,97.643%,1.341%,Trump +96.63%,R
+NE_1,Nebraska 1st District,1,6,28.661%,70.401%,0.938%,Trump +41.74%,R
+NE_2,Nebraska 2nd District,1,6,28.654%,70.405%,0.941%,Trump +41.75%,R
+NE_3,Nebraska 3rd District,1,1,87.253%,11.485%,1.262%,Biden +75.77%,D
+NV,Nevada,6,3,53.477%,45.509%,1.014%,Biden +7.97%,D
+NH,New Hampshire,4,4,48.083%,50.909%,1.008%,Trump +2.83%,R
+NJ,New Jersey,14,2,55.404%,43.508%,1.088%,Biden +11.9%,D
+NM,New Mexico,5,3,51.197%,47.849%,0.954%,Biden +3.35%,D
+NY,New York,29,1,57.036%,41.898%,1.066%,Biden +15.14%,D
+NC,North Carolina,15,3,52.691%,46.353%,0.956%,Biden +6.34%,D
+ND,North Dakota,3,6,38.817%,60.155%,1.028%,Trump +21.34%,R
+OH,Ohio,18,3,49.651%,49.34%,1.009%,Biden +0.31%,D
+OK,Oklahoma,7,6,35.46%,63.611%,0.929%,Trump +28.15%,R
+OR,Oregon,7,1,60.835%,38.167%,0.998%,Biden +22.67%,D
+PA,Pennsylvania,20,2,55.019%,43.976%,1.005%,Biden +11.04%,D
+RI,Rhode Island,4,1,62.29%,36.713%,0.997%,Biden +25.58%,D
+SC,South Carolina,9,4,45.754%,53.253%,0.993%,Trump +7.5%,R
+SD,South Dakota,3,4,46.207%,52.74%,1.053%,Trump +6.53%,R
+TN,Tennessee,11,6,41.223%,57.801%,0.976%,Trump +16.58%,R
+TX,Texas,38,4,48.561%,50.34%,1.099%,Trump +1.78%,R
+UT,Utah,6,5,42.849%,56.079%,1.072%,Trump +13.23%,R
+VT,Vermont,3,1,75.953%,23.136%,0.911%,Biden +52.82%,D
+VA,Virginia,13,3,51.37%,47.573%,1.057%,Biden +3.8%,D
+WA,Washington,12,1,59.179%,39.789%,1.032%,Biden +19.39%,D
+WV,West Virginia,5,6,30.538%,68.527%,0.935%,Trump +37.99%,R
+WI,Wisconsin,10,4,47.657%,51.312%,1.031%,Trump +3.66%,R
+WY,Wyoming,3,6,31.094%,67.824%,1.082%,Trump +36.73%,R

@@ -9,7 +9,8 @@ from itertools import zip_longest
 
 results = []
 
-winners = []
+democrat_ec = []
+republican_ec = []
 
 def state_election():
     for key, value in contests.items():
@@ -22,7 +23,7 @@ def state_election():
 
         temp = []
 
-        for _ in range (10000):
+        for _ in range (100000):
             simulation = random.choices(['D', 'R', 'T'], [(int(democratic_average) + model_index_d), (int(republican_average) + model_index_r), 1])
         
             if 'D' in simulation:
@@ -37,33 +38,31 @@ def state_election():
         if temp.count('D') > temp.count('R'):
             party = 0
 
-            margin = round((temp.count('D') / 100), 2) - round((temp.count('R') / 100), 2)
+            margin = round((temp.count('D') / 1000), 2) - round((temp.count('R') / 1000), 2)
             if margin > 15:
                 party = 1
             elif margin > 10:
                 party = 2
             elif margin > 0:
                 party = 3
-            print(margin, party)
+            # print(margin, party)
             
-            results.append({key: [value[0], value[1], str(party), str(temp.count('D')/100) + '%', str(temp.count('R')/100) + '%', str(temp.count('T')/100) + '%', 'Biden +' + str(round((temp.count('D')/100) - (temp.count('R')/100), 2)) + '%','D']})
+            results.append({key: [value[0], value[1], str(party), str(temp.count('D')/1000) + '%', str(temp.count('R')/1000) + '%', str(temp.count('T')/1000) + '%', 'Biden +' + str(round((temp.count('D')/1000) - (temp.count('R')/1000), 2)) + '%','D']})
+            democrat_ec.append(int(value[1]))
 
         if temp.count('R') > temp.count('D'):
             party = 0
 
-            margin = round((temp.count('R') / 100), 2) - round((temp.count('D') / 100), 2)
+            margin = round((temp.count('R') / 1000), 2) - round((temp.count('D') / 1000), 2)
             if margin > 15:
                 party = 6
             elif margin > 10:
                 party = 5
             elif margin > 0:
                 party =4
-            print(margin, party)
-            results.append({key: [value[0], value[1], str(party), str(temp.count('D')/100) + '%', str(temp.count('R')/100) + '%', str(temp.count('T')/100) + '%', 'Trump +' + str(round((temp.count('R')/100) - (temp.count('D')/100), 2)) + '%','R']})
-        
-        # for index in range(len(results)):
-        #     for key in results[index]:
-        #         print(results[index])
+            # print(margin, party)
+            results.append({key: [value[0], value[1], str(party), str(temp.count('D')/1000) + '%', str(temp.count('R')/1000) + '%', str(temp.count('T')/1000) + '%', 'Trump +' + str(round((temp.count('R')/1000) - (temp.count('D')/1000), 2)) + '%','R']})
+            republican_ec.append(int(value[1]))
 
 
 
@@ -75,6 +74,9 @@ def run():
 
 def output():
     state_election()
+    for index in range(len(results)):
+        print(results[index])
+    print(sum(democrat_ec), sum(republican_ec))
     with open('results_2.csv', 'w') as csvfile:
         filewriter = csv.writer(csvfile,
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
