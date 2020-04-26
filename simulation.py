@@ -41,13 +41,13 @@ def state_election():
             margin = round((temp.count('D') / 1000), 2) - round((temp.count('R') / 1000), 2)
             if margin > 15:
                 party = 1
-            elif margin > 10:
+            elif margin > 7.5:
                 party = 2
             elif margin > 0:
                 party = 3
             # print(margin, party)
             
-            results.append({key: [value[0], value[1], str(party), str(temp.count('D')/1000) + '%', str(temp.count('R')/1000) + '%', str(temp.count('T')/1000) + '%', 'Biden +' + str(round((temp.count('D')/1000) - (temp.count('R')/1000), 2)) + '%','D']})
+            results.append({key: [value[0], value[1], str(party), str(round((temp.count('D')/1000), 2)) + '%', str(round((temp.count('R')/1000), 2)) + '%', str(round((temp.count('T')/1000), 2)) + '%', 'Biden +' + str(round((temp.count('D')/1000) - (temp.count('R')/1000), 2)) + '%','D']})
             democrat_ec.append(int(value[1]))
 
         if temp.count('R') > temp.count('D'):
@@ -56,12 +56,12 @@ def state_election():
             margin = round((temp.count('R') / 1000), 2) - round((temp.count('D') / 1000), 2)
             if margin > 15:
                 party = 6
-            elif margin > 10:
+            elif margin > 7.5:
                 party = 5
             elif margin > 0:
-                party =4
+                party = 4
             # print(margin, party)
-            results.append({key: [value[0], value[1], str(party), str(temp.count('D')/1000) + '%', str(temp.count('R')/1000) + '%', str(temp.count('T')/1000) + '%', 'Trump +' + str(round((temp.count('R')/1000) - (temp.count('D')/1000), 2)) + '%','R']})
+            results.append({key: [value[0], value[1], str(party), str(round((temp.count('D')/1000), 2)) + '%', str(round((temp.count('R')/1000), 2)) + '%', str(round((temp.count('T')/1000), 2)) + '%', 'Trump +' + str(round((temp.count('R')/1000) - (temp.count('D')/1000), 2)) + '%','R']})
             republican_ec.append(int(value[1]))
 
 
@@ -77,7 +77,7 @@ def output():
     for index in range(len(results)):
         print(results[index])
     print(sum(democrat_ec), sum(republican_ec))
-    with open('results_2.csv', 'w') as csvfile:
+    with open('results.csv', 'w') as csvfile:
         filewriter = csv.writer(csvfile,
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
         filewriter.writerow(["id", "name", "ec", "party", "democrat", "republican", "third", "margin", "winner"])

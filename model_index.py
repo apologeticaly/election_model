@@ -6,68 +6,53 @@ import sys
 
 scores = {}
 
-
 def model_index():
     for key, value in contests.items():
         democrat = 'D'
         republican = 'R'
         mi_score_d = 0
         mi_score_r = 0
-        polling_d = int(value[1])
-        polling_r = int(value[2])
-        mle_d = float(value[4])
-        mle_r = float(value[5])
-        favor_d = float(value[6])
-        favor_r = float(value[7])
-        past_five = value[8]
+        polling_d = int(value[2])
+        polling_r = int(value[3])
+        mle_d = float(value[5])
+        mle_r = float(value[6])
+        past_five = value[9]
 
         if numpy.subtract(polling_d, polling_r) > 10:
-            mi_score_d = mi_score_d + 2.5
+            mi_score_d = mi_score_d + 0.5
 
         if numpy.subtract(polling_d, polling_r) > 5:
-            mi_score_d = mi_score_d + 1.0
+            mi_score_d = mi_score_d + 0.25
         
         if numpy.subtract(polling_d, polling_r) > 1:
-            mi_score_d = mi_score_d + 0.5
+            mi_score_d = mi_score_d + 0.1
         
         if numpy.subtract(polling_r, polling_d) > 10:
-            mi_score_r = mi_score_r + 2.5
+            mi_score_r = mi_score_r + 0.5
 
         if numpy.subtract(polling_r, polling_d) > 5:
-            mi_score_r = mi_score_r + 1.0
+            mi_score_r = mi_score_r + 0.25
         
         if numpy.subtract(polling_r, polling_d) > 1:
-            mi_score_r = mi_score_r + 0.5
+            mi_score_r = mi_score_r + 0.1
 
 
 
         for i in past_five: 
             if i == democrat: 
-                mi_score_d = mi_score_d + 1
+                mi_score_d = mi_score_d + 0.25
 
         for i in past_five: 
             if i == republican: 
-                mi_score_r = mi_score_r + 1
+                mi_score_r = mi_score_r + 0.25
 
 
 
         if mle_d > mle_r:
-            mi_score_d = mi_score_d + 0.25
-
-            if mle_d > 5:
-                mi_score_d = mi_score_d + 2.5
-
-            if mle_d > 10:
-                mi_score_d = mi_score_d + 5.75
+            mi_score_d = mi_score_d + 1.0
 
         if mle_r > mle_d:
-            mi_score_r = mi_score_r + 0.25
-
-            if mle_d > 5:
-                mi_score_r = mi_score_r + 2.5
-
-            if mle_d > 10:
-                mi_score_r = mi_score_r + 5.75
+            mi_score_r = mi_score_r + 1.0
         
 
 
