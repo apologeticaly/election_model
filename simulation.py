@@ -19,8 +19,8 @@ def state_election():
         id = value[0]
         ec = value[1]
 
-        democratic_average = int(value[2])
-        republican_average = int(value[3])
+        democratic_average = float(value[2])
+        republican_average = float(value[3])
 
         model_index_d = scores[key][0]
         model_index_r = scores[key][1]
@@ -94,17 +94,33 @@ def state_election():
 
 #     print (table.table)
 
-state_election()
-with open('results.csv', 'w') as csvfile:
-    filewriter = csv.writer(csvfile,
-                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    filewriter.writerow(["id", "name", "ec", "party", "democrat", "republican", "third", "margin", "winner"])
-    
-    for key, value in results.items():
-        filewriter.writerow([key, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7]])
-        
-    filewriter.writerow([sum(democrat_electors), sum(republican_electors)])
-print('File outputed as output.csv')
+if __name__ == '__main__':
+    if sys.argv[1] == 'rundown':
+        temp_dump = []
+        for _ in range(1000):
+            state_election()
+            if sum(democrat_electors) > sum(republican_electors):
+                temp_dump.append("D")
+            
+            if sum(democrat_electors) < sum(republican_electors):
+                temp_dump.append("R") 
+
+            democrat_electors = []
+            republican_electors = []
+        print(temp_dump.count("D"), temp_dump.count("R"))
+
+    elif sys.argv[1] == 'results':
+        state_election()
+        with open('results.csv', 'w') as csvfile:
+            filewriter = csv.writer(csvfile,
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            filewriter.writerow(["id", "name", "ec", "party", "democrat", "republican", "third", "margin", "winner"])
+            
+            for key, value in results.items():
+                filewriter.writerow([key, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7]])
+                
+            filewriter.writerow([sum(democrat_electors), sum(republican_electors)])
+        print('File outputed as results.csv')
 
 # if __name__ == '__main__':
 #     try:
@@ -149,4 +165,4 @@ print('File outputed as output.csv')
 #                     filewriter.writerow([i,"R"])
                 
 #                 filewriter.writerow([sum(democrat_electors), sum(republican_electors)])
-#             print('File outputed as output.csv')
+#             print('File outputed as output.csv') 

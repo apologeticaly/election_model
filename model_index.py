@@ -16,8 +16,8 @@ def model_index():
         mi_score_d = 1
         mi_score_r = 1
 
-        polling_d = int(value[2])
-        polling_r = int(value[3])
+        polling_d = float(value[2])
+        polling_r = float(value[3])
 
         mle_d = float(value[5])
         mle_r = float(value[6])
@@ -85,7 +85,7 @@ def model_index():
         if favor_r > favor_d :
             mi_score_r = mi_score_r + 0.0025
     
-        scores[key] = [mi_score_d, mi_score_r]
+        scores[key] = [round(mi_score_d, 3), round(mi_score_r, 3)]
         
         mi_score_d = 0
         mi_score_r = 0
