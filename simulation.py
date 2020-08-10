@@ -23,8 +23,8 @@ def state_election():
         id = value[0]
         ec = value[1]
 
-        democratic_average = float(value[2])
-        republican_average = float(value[3])
+        democratic_average = float(value[2]) * random.uniform(1, 1.09) 
+        republican_average = float(value[3]) * random.uniform(1, 1.09) 
 
         model_index_d = scores[key][0]
         model_index_r = scores[key][1]
@@ -43,8 +43,8 @@ def state_election():
             democrat_electors.append(int(ec))
             party = 3
 
-            democrat_t = str(democrat) + '%'
-            republican_t = str(republican) + '%'
+            democrat_t = str(round(democrat - (third / 2), 2)) + '%'
+            republican_t = str(round(100 - democrat - (third / 2), 2)) + '%'
             third_t = str(third) + '%'
 
             margin = round((democrat - republican), 4)
@@ -64,8 +64,8 @@ def state_election():
             republican_electors.append(int(ec))
             party = 4
 
-            democrat_t = str(democrat) + '%'
-            republican_t = str(republican) + '%'
+            democrat_t = str(round(100 - republican - (third / 2), 2)) + '%'
+            republican_t = str(round(republican - (third / 2), 2)) + '%'
             third_t = str(third) + '%'
 
             margin = round((republican - democrat), 4)
@@ -84,7 +84,7 @@ def state_election():
 if __name__ == '__main__':
     if sys.argv[1] == 'rundown':
         temp_dump = []
-        for _ in range(100):
+        for _ in range(10):
             state_election()
             if sum(democrat_electors) > sum(republican_electors):
                 temp_dump.append("D")
@@ -182,7 +182,7 @@ if __name__ == '__main__':
 
     elif sys.argv[1] == 'results':
         state_election()
-        with open('results_.csv', 'w') as csvfile:
+        with open('results_august.csv', 'w') as csvfile:
             filewriter = csv.writer(csvfile,
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
             filewriter.writerow(["id", "name", "ec", "party", "democrat", "republican", "third", "margin", "winner"])
