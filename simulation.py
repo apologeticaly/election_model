@@ -145,6 +145,9 @@ if __name__ == '__main__':
             if sum(democrat_electors) < sum(republican_electors):
                 temp_dump.append("R")
 
+            if sum(democrat_electors) == sum(republican_electors):
+                temp_dump.append("T")
+
             democrat_electors = []
             republican_electors = []
             bar.next()
@@ -182,7 +185,7 @@ if __name__ == '__main__':
 
     elif sys.argv[1] == 'results':
         state_election()
-        with open('results_.csv', 'w') as csvfile:
+        with open('results_august.csv', 'w') as csvfile:
             filewriter = csv.writer(csvfile,
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
             filewriter.writerow(["id", "name", "ec", "party", "democrat", "republican", "third", "margin", "winner"])
@@ -191,4 +194,4 @@ if __name__ == '__main__':
                 filewriter.writerow([key, value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7]])
                 
             filewriter.writerow([sum(democrat_electors), sum(republican_electors)])
-        print('File outputed as results.csv')
+        print('File outputed as results_august.csv')
