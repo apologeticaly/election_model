@@ -24,6 +24,18 @@ Average Votes:
 Demorat: 264.28, Republican 273.43
 ```
 
+
+## Results Output (For Lichtman2020.com)
+```
+python3 simulation.py results
+```
+Example output:
+```
+results.csv with model output for all 50 states
+```
+
+
+
 ## Get in touch with the developer
 - Email: muheec@gmail.com
 - Personal site: https://mconstantino.com
